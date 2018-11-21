@@ -11,12 +11,12 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "noEmit": true,
+    "noEmit": false,
     "resolveJsonModule": true,
     "noImplicitAny": false,
     "lib": ["es2017", "esnext.asynciterable", "esnext", "dom"],
     "rootDir": "./src",
     "outDir": "./build"
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
 }
