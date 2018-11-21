@@ -4,6 +4,9 @@
   "description": "Renders webpages using headless Chrome for usage by bots",
   "license": "Apache-2.0",
   "repository": "https://github.com/GoogleChrome/rendertron",
+  "engines": {
+    "node": "8.11.3"
+  },
   "main": "build/rendertron.js",
   "types": "build/rendertron.d.ts",
   "bin": "bin/rendertron",
