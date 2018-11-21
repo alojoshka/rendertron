@@ -8,15 +8,15 @@
     "pretty": true,
     "declaration": true,
     "sourceMap": true,
-    "lib": [
-      "es2017",
-      "esnext.asynciterable",
-      "dom"
-    ],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "lib": ["es2017", "esnext.asynciterable", "esnext", "dom"],
     "rootDir": "./src",
     "outDir": "./build"
   },
-  "include": [
-    "./src/**/*.ts"
-  ]
+  "include": ["./src/**/*.ts"]
 }
