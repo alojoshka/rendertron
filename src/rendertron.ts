@@ -33,7 +33,16 @@ export class Rendertron {
     }
 
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-gpu",
+        "--remote-debugging-port=9222",
+        "--mute-audio",
+        "--disable-dev-shm-usage",
+        "--disable-accelerated-2d-canvas",
+        "--headless"
+      ]
     });
     this.renderer = new Renderer(browser);
 
@@ -105,7 +114,7 @@ export class Rendertron {
 
     const serialized = await this.renderer.serialize(url, mobileVersion);
     // Mark the response as coming from Rendertron.
-    ctx.set("x-renderer", "rendertron");
+    //ctx.set("x-renderer", "rendertron");
     ctx.status = serialized.status;
     ctx.body = serialized.content;
   }
