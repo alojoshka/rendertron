@@ -2,20 +2,21 @@ language: node_js
 node_js: "8"
 dist: trusty
 cache:
+  yarn: true
   directories:
   - "$HOME/gcloud"
 install:
-  - npm install
+  - yarn
   - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
   - if [ ! -d $HOME/gcloud/google-cloud-sdk ]; then mkdir -p $HOME/gcloud && wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz --directory-prefix=$HOME/gcloud && cd $HOME/gcloud && tar xzf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh && cd $TRAVIS_BUILD_DIR;
     fi
   - ${HOME}/gcloud/google-cloud-sdk/bin/gcloud components install beta cloud-datastore-emulator
   - source $HOME/gcloud/google-cloud-sdk/path.bash.inc
-  - (cd middleware && npm install)
+  - (cd middleware && yarn)
 script:
-  - npm run lint
-  - npm run test
-  - npm run test-cache
-  - (cd middleware && npm run lint && npm run test)
+  - yarn lint
+  - yarn test
+  - yarn test-cache
+  - (cd middleware && yarn lint && yarn test)
 addons:
   chrome: stable
