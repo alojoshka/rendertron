@@ -15,7 +15,6 @@
     "prepack": "npm run build",
     "start": "node build/rendertron.js",
     "format": "find src -name '*.ts' | xargs clang-format --style=file -i",
-    "watch": "concurrently \"npm run ts:watch\" \"npm run serve\"",
     "lint": "tslint --project . --format stylish",
     "monitor": "nodemon src/main.js",
     "monitor-inspect": "nodemon --inspect src/main.js",
