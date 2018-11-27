@@ -13,6 +13,7 @@
   "scripts": {
     "build": "tsc",
     "prepack": "npm run build",
+    "prod:serve": "node build/rendertron.js",
     "start": "node build/rendertron.js",
     "format": "find src -name '*.ts' | xargs clang-format --style=file -i",
     "lint": "tslint --project . --format stylish",
