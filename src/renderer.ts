@@ -68,10 +68,11 @@ export class Renderer {
 
     const page = await this.browser.newPage();
 
-    page.setViewport({ width: 1000, height: 1000, isMobile });
-
     if (isMobile) {
+      page.setViewport({ width: 800, height: 1200, isMobile });
       page.setUserAgent(MOBILE_USERAGENT);
+    } else {
+      page.setViewport({ width: 1600, height: 1200, isMobile });
     }
 
     page.evaluateOnNewDocument("customElements.forcePolyfill = true");
@@ -92,7 +93,7 @@ export class Renderer {
     try {
       // Navigate to page. Wait until there are no oustanding network requests.
       response = await page.goto(requestUrl, {
-        timeout: 10000,
+        timeout: 30000,
         waitUntil: "networkidle0"
       });
     } catch (e) {
@@ -171,7 +172,7 @@ export class Renderer {
     try {
       // Navigate to page. Wait until there are no oustanding network requests.
       response = await page.goto(url, {
-        timeout: 10000,
+        timeout: 30000,
         waitUntil: "networkidle0"
       });
     } catch (e) {

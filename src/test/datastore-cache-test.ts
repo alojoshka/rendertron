@@ -58,7 +58,7 @@ test("caches content and serves same content on cache hit", async t => {
   t.is(res.text, "Called " + previousCount + " times");
 
   // Workaround for race condition with writing to datastore.
-  await promiseTimeout(500);
+  await promiseTimeout(1500);
 
   res = await server.get("/?basictest");
   t.is(res.status, 200);
@@ -89,7 +89,7 @@ test("caches headers", async t => {
   t.is(res.text, "set-header-payload");
 
   // Workaround for race condition with writing to datastore.
-  await promiseTimeout(500);
+  await promiseTimeout(1500);
 
   res = await server.get("/set-header");
   t.is(res.status, 200);
@@ -114,7 +114,7 @@ test("compression preserved", async t => {
   t.is(res.text, expectedBody);
 
   // Workaround for race condition with writing to datastore.
-  await promiseTimeout(500);
+  await promiseTimeout(1500);
 
   res = await server
     .get("/compressed")
