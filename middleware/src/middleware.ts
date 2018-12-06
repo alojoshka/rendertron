@@ -101,7 +101,7 @@ export function makeMiddleware(options: Options): express.Handler {
   const injectShadyDom = !!options.injectShadyDom;
   // The Rendertron service itself has a hard limit of 10 seconds to render, so
   // let's give a little more time than that by default.
-  const timeout = options.timeout || 31000;  // Milliseconds.
+  const timeout = options.timeout || 61000;  // Milliseconds.
 
   return function rendertronMiddleware(req, res, next) {
     let ua = req.headers['user-agent'];
