@@ -14,28 +14,28 @@
  * the License.
  */
 
-import * as express from 'express';
-import * as request from 'request';
+import * as express from "express";
+import request from "request";
 
 /**
  * A default set of user agent patterns for bots/crawlers that do not perform
  * well with pages that require JavaScript.
  */
 export const botUserAgents = [
-  'W3C_Validator',
-  'baiduspider',
-  'bingbot',
-  'embedly',
-  'facebookexternalhit',
-  'linkedinbot',
-  'outbrain',
-  'pinterest',
-  'quora link preview',
-  'rogerbot',
-  'showyoubot',
-  'slackbot',
-  'twitterbot',
-  'vkShare',
+  "W3C_Validator",
+  "baiduspider",
+  "bingbot",
+  "embedly",
+  "facebookexternalhit",
+  "linkedinbot",
+  "outbrain",
+  "pinterest",
+  "quora link preview",
+  "rogerbot",
+  "showyoubot",
+  "slackbot",
+  "twitterbot",
+  "vkShare"
 ];
 
 /**
@@ -43,11 +43,47 @@ export const botUserAgents = [
  * proxied.
  */
 const staticFileExtensions = [
-  'ai',  'avi',  'css', 'dat',  'dmg', 'doc',     'doc',  'exe', 'flv',
-  'gif', 'ico',  'iso', 'jpeg', 'jpg', 'js',      'less', 'm4a', 'm4v',
-  'mov', 'mp3',  'mp4', 'mpeg', 'mpg', 'pdf',     'png',  'ppt', 'psd',
-  'rar', 'rss',  'svg', 'swf',  'tif', 'torrent', 'ttf',  'txt', 'wav',
-  'wmv', 'woff', 'xls', 'xml',  'zip',
+  "ai",
+  "avi",
+  "css",
+  "dat",
+  "dmg",
+  "doc",
+  "doc",
+  "exe",
+  "flv",
+  "gif",
+  "ico",
+  "iso",
+  "jpeg",
+  "jpg",
+  "js",
+  "less",
+  "m4a",
+  "m4v",
+  "mov",
+  "mp3",
+  "mp4",
+  "mpeg",
+  "mpg",
+  "pdf",
+  "png",
+  "ppt",
+  "psd",
+  "rar",
+  "rss",
+  "svg",
+  "swf",
+  "tif",
+  "torrent",
+  "ttf",
+  "txt",
+  "wav",
+  "wmv",
+  "woff",
+  "xls",
+  "xml",
+  "zip"
 ];
 
 /**
@@ -88,41 +124,47 @@ export interface Options {
  */
 export function makeMiddleware(options: Options): express.Handler {
   if (!options || !options.proxyUrl) {
-    throw new Error('Must set options.proxyUrl.');
+    throw new Error("Must set options.proxyUrl.");
   }
   let proxyUrl = options.proxyUrl;
-  if (!proxyUrl.endsWith('/')) {
-    proxyUrl += '/';
+  if (!proxyUrl.endsWith("/")) {
+    proxyUrl += "/";
   }
   const userAgentPattern =
-      options.userAgentPattern || new RegExp(botUserAgents.join('|'), 'i');
-  const excludeUrlPattern = options.excludeUrlPattern ||
-      new RegExp(`\\.(${staticFileExtensions.join('|')})$`, 'i');
+    options.userAgentPattern || new RegExp(botUserAgents.join("|"), "i");
+  const excludeUrlPattern =
+    options.excludeUrlPattern ||
+    new RegExp(`\\.(${staticFileExtensions.join("|")})$`, "i");
   const injectShadyDom = !!options.injectShadyDom;
+  Ы;
   // The Rendertron service itself has a hard limit of 10 seconds to render, so
   // let's give a little more time than that by default.
-  const timeout = options.timeout || 31000;  // Milliseconds.
+  const timeout = options.timeout || 42000; // Milliseconds.
 
   return function rendertronMiddleware(req, res, next) {
-    let ua = req.headers['user-agent'];
+    let ua = req.headers["user-agent"] as any;
     if (ua instanceof Array) {
       ua = ua[0];
     }
-    if (ua === undefined || !userAgentPattern.test(ua) ||
-        excludeUrlPattern.test(req.path)) {
+    if (
+      ua === undefined ||
+      !userAgentPattern.test(ua) ||
+      excludeUrlPattern.test(req.path)
+    ) {
       next();
       return;
     }
     const incomingUrl =
-        req.protocol + '://' + req.get('host') + req.originalUrl;
+      req.protocol + "://" + req.get("host") + req.originalUrl;
     let renderUrl = proxyUrl + encodeURIComponent(incomingUrl);
     if (injectShadyDom) {
-      renderUrl += '?wc-inject-shadydom=true';
+      renderUrl += "?wc-inject-shadydom=true";
     }
-    request({url: renderUrl, timeout}, (e) => {
+    request({ url: renderUrl, timeout }, e => {
       if (e) {
         console.error(
-            `[rendertron middleware] ${e.code} error fetching ${renderUrl}`);
+          `[rendertron middleware] ${e.code} error fetching ${renderUrl}`
+        );
         next();
       }
     }).pipe(res);
