@@ -69,10 +69,10 @@ export class Renderer {
     const page = await this.browser.newPage();
 
     if (isMobile) {
-      page.setViewport({ width: 800, height: 1200, isMobile });
+      await page.setViewport({ width: 800, height: 1200, isMobile });
       page.setUserAgent(MOBILE_USERAGENT);
     } else {
-      page.setViewport({ width: 1600, height: 900, isMobile });
+      await page.setViewport({ width: 1600, height: 900, isMobile });
     }
 
     page.evaluateOnNewDocument("customElements.forcePolyfill = true");
@@ -157,7 +157,7 @@ export class Renderer {
   ): Promise<Buffer> {
     const page = await this.browser.newPage();
 
-    page.setViewport({
+    await page.setViewport({
       width: dimensions.width,
       height: dimensions.height,
       isMobile
