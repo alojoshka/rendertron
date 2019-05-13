@@ -93,7 +93,7 @@ export class Renderer {
     try {
       // Navigate to page. Wait until there are no oustanding network requests.
       response = await page.goto(requestUrl, {
-        timeout: 50000,
+        timeout: 40000,
         waitUntil: "networkidle0"
       });
     } catch (e) {
@@ -172,7 +172,7 @@ export class Renderer {
     try {
       // Navigate to page. Wait until there are no oustanding network requests.
       response = await page.goto(url, {
-        timeout: 50000,
+        timeout: 30000,
         waitUntil: "networkidle0"
       });
     } catch (e) {
