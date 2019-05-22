@@ -93,7 +93,7 @@ export class Renderer {
     try {
       // Navigate to page. Wait until there are no oustanding network requests.
       response = await page.goto(requestUrl, {
-        timeout: 40000,
+        timeout: 44000,
         waitUntil: "networkidle0"
       });
     } catch (e) {
@@ -104,12 +104,15 @@ export class Renderer {
       console.error("response does not exist");
       // This should only occur when the page is about:blank. See
       // https://github.com/GoogleChrome/puppeteer/blob/v1.5.0/docs/api.md#pagegotourl-options.
+      await page.close();
       return { status: 400, content: "" };
     }
 
     // Disable access to compute metadata. See
     // https://cloud.google.com/compute/docs/storing-retrieving-metadata.
+
     if (response.headers()["metadata-flavor"] === "Google") {
+      await page.close();
       return { status: 403, content: "" };
     }
 
