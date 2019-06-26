@@ -136,7 +136,7 @@ export function makeMiddleware(options: Options): express.Handler {
     options.excludeUrlPattern ||
     new RegExp(`\\.(${staticFileExtensions.join("|")})$`, "i");
   const injectShadyDom = !!options.injectShadyDom;
-  Ы;
+
   // The Rendertron service itself has a hard limit of 10 seconds to render, so
   // let's give a little more time than that by default.
   const timeout = options.timeout || 45000; // Milliseconds.
