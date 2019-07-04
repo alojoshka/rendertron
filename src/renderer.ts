@@ -12,7 +12,9 @@ type ViewportDimensions = {
 };
 
 const MOBILE_USERAGENT =
-  "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Mobile Safari/537.36";
+  "Mozilla/5.0 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36";
+// const MOBILE_USERAGENT =
+//   "Mozilla/5.0 (Linux; Android 8.0.0; Pixel 2 XL Build/OPD1.170816.004) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Mobile Safari/537.36";
 
 /**
  * Wraps Puppeteer's interface to Headless Chrome to expose high level rendering
@@ -71,8 +73,10 @@ export class Renderer {
     if (isMobile) {
       await page.setViewport({ width: 800, height: 1200, isMobile });
       page.setUserAgent(MOBILE_USERAGENT);
+      console.log("IS MOBILE");
     } else {
       await page.setViewport({ width: 1600, height: 900, isMobile });
+      console.log("IS DESKTOP");
     }
 
     page.evaluateOnNewDocument("customElements.forcePolyfill = true");
