@@ -69,7 +69,7 @@ export class Renderer {
     const page = await this.browser.newPage();
 
     if (isMobile) {
-      await page.setViewport({ width: 600, height: 1000, isMobile });
+      await page.setViewport({ width: 800, height: 1200, isMobile });
       page.setUserAgent(MOBILE_USERAGENT);
     } else {
       await page.setViewport({ width: 1600, height: 900, isMobile });
