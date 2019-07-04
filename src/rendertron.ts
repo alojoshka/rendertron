@@ -110,7 +110,7 @@ export class Rendertron {
       return;
     }
 
-    const mobileVersion = true; //"mobile" in ctx.query ? true : false;
+    const mobileVersion = "mobile" in ctx.query ? true : false;
 
     const serialized = await this.renderer.serialize(url, mobileVersion);
     // Mark the response as coming from Rendertron.
