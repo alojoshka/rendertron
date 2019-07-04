@@ -7,7 +7,7 @@ import koaSend from "koa-send";
 import path from "path";
 import puppeteer from "puppeteer";
 import url from "url";
-
+import { isMobile } from "is-mobile";
 import { Renderer, ScreenshotError } from "./renderer";
 
 const CONFIG_PATH = path.resolve(__dirname, "../config.json");
@@ -109,8 +109,8 @@ export class Rendertron {
       ctx.status = 403;
       return;
     }
-
-    const mobileVersion = "mobile" in ctx.query ? true : false;
+    //const md = new MobileDetect(ctx.request.headers['user-agent']);
+    const mobileVersion = isMobile(); //"mobile" in ctx.query ? true : false;
 
     const serialized = await this.renderer.serialize(url, mobileVersion);
     // Mark the response as coming from Rendertron.
