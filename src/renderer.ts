@@ -152,7 +152,7 @@ export class Renderer {
     const result = await page.evaluate("document.firstElementChild.outerHTML");
 
     await page.close();
-    return { status: statusCode, content: result };
+    return { status: statusCode, content: result } as SerializedResponse;
   }
 
   async screenshot(
