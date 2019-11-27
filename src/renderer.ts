@@ -38,7 +38,7 @@ export class Renderer {
     function stripPage() {
       // Strip only script tags that contain JavaScript (either no type attribute or one that contains "javascript")
       const elements = document.querySelectorAll(
-        'script:not([type]), script[type*="javascript"], link[rel=import]'
+        'script:not([type]):not([language]), script[type*="javascript"], link[rel=import]'
       );
       for (const e of Array.from(elements)) {
         e.remove();
