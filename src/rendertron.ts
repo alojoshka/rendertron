@@ -163,6 +163,14 @@ async function logUncaughtError(error: Error) {
   console.error(error);
   process.exit(1);
 }
+async function logUnhandledRejection(
+  reason: {} | null | undefined,
+  _: Promise<any>
+) {
+  console.error("Unhandled rejection");
+  console.error(reason);
+  process.exit(1);
+}
 
 // Start rendertron if not running inside tests.
 if (!module.parent) {
@@ -170,5 +178,5 @@ if (!module.parent) {
   rendertron.initialize();
 
   process.on("uncaughtException", logUncaughtError);
-  process.on("unhandledRejection" as any, logUncaughtError);
+  process.on("unhandledRejection", logUnhandledRejection);
 }

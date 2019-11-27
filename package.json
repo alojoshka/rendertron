@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/GoogleChrome/rendertron",
   "engines": {
-    "node": "8.11.3"
+    "node": ">=8.11.3"
   },
   "main": "build/rendertron.js",
   "types": "build/rendertron.d.ts",
@@ -38,6 +38,7 @@
     "koa-route": "^3.2.0",
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
+    "koa-logger": "^3.2.0",
     "performance-now": "^2.1.0",
     "progress-bar-element": "^2.0.1",
     "puppeteer": "^1.19.0",
@@ -58,6 +59,6 @@
     "nodemon": "^1.19.4",
     "supertest": "^3.4.2",
     "tslint": "^5.20.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.2"
   }
 }

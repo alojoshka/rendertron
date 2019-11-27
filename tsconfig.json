@@ -14,9 +14,9 @@
     "noEmit": false,
     "resolveJsonModule": true,
     "noImplicitAny": false,
-    "lib": ["es2017", "esnext.asynciterable", "esnext", "dom"],
+    "lib": ["es2017", "esnext.asynciterable", "dom"],
     "rootDir": "./src",
     "outDir": "./build"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.d.ts"]
+  "include": ["./src/**/*.ts"]
 }
