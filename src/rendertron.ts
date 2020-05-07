@@ -24,7 +24,7 @@ export class Rendertron {
   app: Koa = new Koa();
   config: Config = { datastoreCache: false };
   private renderer: Renderer | undefined;
-  private port = process.env.PORT || "3025";
+  private port = process.env.PORT || "3000";
 
   async initialize() {
     // Load config.json if it exists.
