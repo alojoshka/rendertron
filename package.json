@@ -56,6 +56,8 @@
     "@types/puppeteer": "^2.0.0",
     "@types/supertest": "^2.0.8",
     "@types/fs-extra": "^8.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.2.0",
     "ava": "1.0.0-beta.6",
     "nodemon": "^1.19.4",
     "supertest": "^3.4.2",
