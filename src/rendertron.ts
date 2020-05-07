@@ -9,7 +9,7 @@ import puppeteer from "puppeteer";
 import url from "url";
 import IsMobile from "@kohlmannj/is-mobile";
 import { Renderer, ScreenshotError } from "./renderer";
-
+require("dotenv").config();
 const CONFIG_PATH = path.resolve(__dirname, "../config.json");
 
 type Config = {
@@ -24,7 +24,7 @@ export class Rendertron {
   app: Koa = new Koa();
   config: Config = { datastoreCache: false };
   private renderer: Renderer | undefined;
-  private port = process.env.PORT || "3000";
+  private port = process.env.PORT || "3025";
 
   async initialize() {
     // Load config.json if it exists.
@@ -41,8 +41,8 @@ export class Rendertron {
         "--mute-audio",
         "--disable-dev-shm-usage",
         "--disable-accelerated-2d-canvas",
-        "--headless"
-      ]
+        "--headless",
+      ],
     });
     this.renderer = new Renderer(browser);
 
@@ -53,7 +53,7 @@ export class Rendertron {
     this.app.use(
       route.get("/", async (ctx: Koa.Context) => {
         await koaSend(ctx, "index.html", {
-          root: path.resolve(__dirname, "../src")
+          root: path.resolve(__dirname, "../src"),
         });
       })
     );
@@ -136,7 +136,7 @@ export class Rendertron {
 
     const dimensions = {
       width: Number(ctx.query["width"]) || 1000,
-      height: Number(ctx.query["height"]) || 1000
+      height: Number(ctx.query["height"]) || 1000,
     };
 
     const mobileVersion = "mobile" in ctx.query ? true : false;
