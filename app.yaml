@@ -3,6 +3,6 @@ instance_class: F4_1G
 automatic_scaling:
   min_instances: 1
   max_instances: 5
-  target_cpu_utilization: 0.7
-  max_concurrent_requests: 15
+  target_cpu_utilization: 0.4
+  max_concurrent_requests: 6
   max_idle_instances: 1

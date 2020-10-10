@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       script: "build/rendertron.js",
-      max_memory_restart: '300M',
+      max_memory_restart: '200M',
       watch: ".",
     },
   ],
